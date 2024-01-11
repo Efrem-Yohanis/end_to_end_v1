@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'view.css' %}">
+    <title>User Detail</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+          <ul>
+            <li><a href="{% url 'home' %}">QA-Test-Tool</a></li>
+            <li class="login-btn" style="float: right;"><a href="{% url 'logout' %}">Log out</a></li>
+   
+          </ul>
+        </nav>
+      </header>
+
+    <main>
+        <section class="user-detail">
+            <h2>User Detail</h2>
+            <div>
+                <strong>Full Name:</strong>
+                <span id="username">{{user.first_name}} {{user.last_name}}</span>
+            </div>
+            <div>
+                <strong>Username:</strong>
+                <span id="username">{{user.username}}</span>
+            </div>
+            <div>
+                <strong>Email:</strong>
+                <span id="email">{{user.email}}</span>
+            </div>
+            <div>
+                <strong>Role:</strong>
+                <span id="role">{{user.role}}</span>
+            </div>
+            <div>
+                <strong>Date of Birth:</strong>
+                <span id="dob">{{user.date_of_birth}}</span>
+            </div>
+            <div>
+                <strong>Address:</strong>
+                <span id="address">{{user.address}}</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 <a href="https://craftknowledge.net/" class="link-deco">Craft Knowledge</a> . All rights reserved.</p>
+
+      </footer>
+</body>
+
+</html>

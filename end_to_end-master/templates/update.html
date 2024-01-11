@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'update.css' %}">
+    <title>Update User</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+          <ul>
+            <li><a href="{% url 'home' %}">QA-Test-Tool</a></li>
+            <li class="login-btn" style="float: right;"><a href="{% url 'logout' %}">Log out</a></li>
+   
+          </ul>
+        </nav>
+      </header>
+
+    <main>
+        <section class="register-form">
+            <h2>Update User Form</h2>
+         
+            <form action="" method="POST">
+              {% csrf_token %}
+              <div >
+                <label for="username">First Name:</label>
+                <input class="form-element" type="text" id="username" name="first_name" value="{{user.first_name}}" required>
+              </div>
+              <div >
+                <label for="username">Last Name:</label>
+                <input class="form-element" type="text" id="username" name="last_name" value="{{user.last_name}}" required>
+              </div>
+            
+              <div >
+                <label for="email">Email:</label>
+                <input class="form-element" type="email" id="email" name="email" value="{{user.email}}" required>
+              </div>
+              <div >
+                <label for="phone">Phone:</label>
+                <input class="form-element" type="tel" id="phone" name="phone" value="{{user.phone}}" required>
+              </div>
+              
+              <div >
+                
+                <label for="date_of_birth">Date of Birth:</label>
+                <input class="form-element" type="date" id="date_of_birth" name="date_of_birth" value="{{user.date_of_birth}}" required>
+              
+              </div>
+              <div >
+                <label for="address">Address:</label>
+                <textarea class="form-element" id="address" name="address" value="{{user.address}}"  required></textarea>
+            </div>
+             
+              <div >
+                <label for="role">Role:</label>
+                <select class="form-element" id="role" name="role" value="{{user.role}}" required>
+                  <option value="">Select Role</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="User">User</option>
+                </select>
+              </div>
+              <div >
+                <input type="submit" value="Register">
+              </div>
+            </form>
+          </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2023 <a href="https://craftknowledge.net/" class="link-deco">Craft Knowledge</a> . All rights reserved.</p>
+
+      </footer>
+</body>
+
+</html>

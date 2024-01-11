@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'home.css' %}">
+  <title>Home Page</title>
+  <style>
+   
+    
+    .alert {
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+    
+    .alert.success {
+        background-color: #dff0d8;
+        color: #3c763d;
+    }
+    
+    .alert.error {
+        background-color: #f2dede;
+        color: #a94442;
+    }
+    .close-btn {
+      float: right;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="{% url 'home' %}">QA-Test-Tool</a></li>
+        <li class="login-btn" style="float: right;"><a href="{% url 'logout' %}" >Log out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="user-list">
+      {% if messages %}
+      <div class="alert-container">
+          {% for message in messages %}
+              <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                  <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+      <h2>Registered Users</h2>
+      {% if all_user %}
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in all_user %}
+          <tr>
+            <td>{{user.first_name}} {{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td><a href="{% url 'view_detail' user.id %}" class="btn-view" >View</a></td>
+            <td><a href="{% url 'update' user.id %}" class="btn-update">Update</a></td>
+            <td><a href="{% url 'delete' user.id %}" class="btn-delete">Delete</a></td>
+          </tr>
+        {% endfor %}
+          <!-- Add more rows for each registered user -->
+        </tbody>
+      </table>
+      {% else  %}
+      There is no user registered yet!
+      {% endif %}
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 <a href="https://craftknowledge.net/" class="link-deco">Craft Knowledge</a> . All rights reserved.</p>
+  </footer>
+</body>
+</html>
